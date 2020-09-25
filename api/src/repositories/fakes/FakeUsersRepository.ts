@@ -4,8 +4,13 @@ import User from '../../entities/User'
 
 const users: User[] = []
 
-export const findById = async (id: number): Promise<User | undefined> => {
+const findById = async (id: number): Promise<User | undefined> => {
   const user = users.find((user) => user.id === id)
+  return user
+}
+
+const findByEmail = async (email: string): Promise<User | undefined> => {
+  const user = users.find((user) => user.email === email)
   return user
 }
 
@@ -37,5 +42,7 @@ const save = async (user: User): Promise<User> => {
 
 export default {
   create,
-  save
+  save,
+  findById,
+  findByEmail
 }

@@ -6,9 +6,20 @@ const repository = () => {
   return getRepository(User)
 }
 
-export const findById = async (id: number): Promise<User | undefined> => {
+const findById = async (id: number): Promise<User | undefined> => {
   const usersRepository = repository()
   const user = await usersRepository.findOne(id)
+
+  return user
+}
+
+const findByEmail = async (email: string): Promise<User | undefined> => {
+  const usersRepository = repository()
+  const user = await usersRepository.findOne({
+    where: {
+      email
+    }
+  })
 
   return user
 }
@@ -37,5 +48,7 @@ const save = async (user: User): Promise<User> => {
 
 export default {
   create,
-  save
+  save,
+  findByEmail,
+  findById
 }
