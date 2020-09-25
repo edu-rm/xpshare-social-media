@@ -1,6 +1,6 @@
 import { EntitySchema, getRepository } from 'typeorm'
-import ICreateUserDTO from 'DTOs/ICreateUserDTO'
-import User from '../entities/User'
+import ICreateUserDTO from '../../DTOs/ICreateUserDTO'
+import User from '../../entities/User'
 
 const repository = () => {
   return getRepository(User)

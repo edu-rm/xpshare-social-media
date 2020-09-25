@@ -1,6 +1,6 @@
 import ICreateUserDTO from 'DTOs/ICreateUserDTO'
 import IUserRepository from '../repositories/interfaces/IUserRepository'
-import User from '../entities/User'
+import Xp from '../entities/Xp'
 import AppError from '../errors/AppError'
 
 interface IRequest {
@@ -12,22 +12,6 @@ interface IRequest {
 const execute = async (
   { name, email, password }: ICreateUserDTO,
   repository: IUserRepository
-): Promise<User> => {
-  const userExists = await repository.findByEmail(email)
-
-  if (userExists) {
-    throw new AppError('Email already used')
-  }
-
-  const userCreated = await repository.create({
-    name,
-    email,
-    password
-  })
-
-  const userSaved = await repository.save(userCreated)
-
-  return userSaved
-}
+): Promise<void> => {}
 
 export default execute

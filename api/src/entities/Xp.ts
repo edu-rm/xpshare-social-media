@@ -4,36 +4,34 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
   DeleteDateColumn,
-  OneToMany,
+  ManyToOne,
   JoinColumn
 } from 'typeorm'
-import Xp from './Xp'
+import User from './User'
 
-@Entity('users')
-class User {
+@Entity('xps')
+class Xp {
   @PrimaryGeneratedColumn('increment')
   id: number
-
-  @Column()
-  name: string
 
   @DeleteDateColumn()
   deleted: Date
 
-  @Column({
-    unique: true
-  })
-  email: string
-
   @Column()
-  password: string
+  user_id: number
 
-  @OneToMany(() => Xp, (user) => User, {
+  @ManyToOne(() => User, (xps) => Xp, {
     cascade: true
   })
-  xps: Xp[]
+  @JoinColumn({ name: 'user_id' })
+  user: User
+
+  @Column()
+  title: string
+
+  @Column()
+  content: string
 
   @CreateDateColumn()
   created_at: Date
@@ -42,4 +40,4 @@ class User {
   updated_at: Date
 }
 
-export default User
+export default Xp
