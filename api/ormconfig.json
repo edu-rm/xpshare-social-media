@@ -1,0 +1,17 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "",
+  "database": "xpshare",
+  "migrations": [
+    "./src/config/typeorm/migrations/*.ts"
+  ],
+  "entities": [
+    "./src/entities/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./src/config/typeorm/migrations"
+  }
+}
