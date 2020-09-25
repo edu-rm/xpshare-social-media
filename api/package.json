@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node-dev --inspect --transpile-only --ignore node_modules src/server.ts",
-    "typeorm": "ts-node ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "test": "jest"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",

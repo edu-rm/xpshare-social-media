@@ -1,15 +1,11 @@
 import { EntitySchema, getRepository } from 'typeorm'
 import ICreateUserDTO from 'DTOs/ICreateUserDTO'
-import User from '../entities/User'
+import User from '../../entities/User'
 
-const repository = () => {
-  return getRepository(User)
-}
+const users: User[] = []
 
 export const findById = async (id: number): Promise<User | undefined> => {
-  const usersRepository = repository()
-  const user = await usersRepository.findOne(id)
-
+  const user = users.find((user) => user.id === id)
   return user
 }
 
@@ -18,21 +14,25 @@ const create = async ({
   email,
   password
 }: ICreateUserDTO): Promise<User> => {
-  const usersRepository = repository()
-  const user = await usersRepository.create({
+  const user = new User()
+
+  Object.assign(user, {
+    id: Math.random() * 100,
     name,
     email,
     password
   })
 
+  users.push(user)
   return user
 }
 
 const save = async (user: User): Promise<User> => {
-  const usersRepository = repository()
+  const findIndex = users.findIndex((findUser) => (findUser.id = user.id))
 
-  const userSaved = await usersRepository.save(user)
-  return userSaved
+  users[findIndex] = user
+
+  return user
 }
 
 export default {
