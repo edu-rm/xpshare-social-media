@@ -2,17 +2,30 @@ import React, { useCallback, useState } from 'react'
 
 import { Container, Header, Body } from './styles'
 
+import SignUpModal from '../../components/SignUpModal'
+import LoginModal from '../../components/LoginModal'
+
 const SignIn: React.FC = () => {
   const [showRegisterForm, setShowRegisterForm] = useState<boolean>(false)
   const [showLoginForm, setShowLoginForm] = useState<boolean>(false)
+
+  const handleShowRegisterForm = useCallback(() => {
+    setShowRegisterForm(true)
+  }, [])
+
+  const handleShowLoginForm = useCallback(() => {
+    setShowLoginForm(true)
+  }, [])
 
   return (
     <Container>
       <Header>
         <h1>XP share</h1>
         <div className='options'>
-          <button>Login</button>
-          <button id='get-started'>Get started</button>
+          <button onClick={handleShowLoginForm}>Login</button>
+          <button onClick={handleShowRegisterForm} id='get-started'>
+            Get started
+          </button>
         </div>
       </Header>
       <Body>
@@ -26,7 +39,11 @@ const SignIn: React.FC = () => {
           postar as suas também.
         </h2>
       </Body>
-      <button id='get-started'>Get started</button>
+      <button onClick={handleShowRegisterForm} id='get-started'>
+        Get started
+      </button>
+      {showRegisterForm && <SignUpModal setShowModal={setShowRegisterForm} />}
+      {showLoginForm && <LoginModal setShowModal={setShowLoginForm} />}
     </Container>
   )
 }
