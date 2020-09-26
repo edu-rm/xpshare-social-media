@@ -1,4 +1,15 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const animationUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+`
 
 export const Layout = styled.div`
   position: relative;
@@ -8,4 +19,6 @@ export const Layout = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  animation: ${animationUp} 1s;
 `

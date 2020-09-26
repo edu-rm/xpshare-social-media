@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { shade } from 'polished'
 import { animated } from 'react-spring'
 
 export const Container = styled.div`

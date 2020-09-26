@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Form } from '@unform/web'
-
+import { useAuth } from '../../hooks/AuthContext'
 import Input from '../Input'
 import Modal from '../../styles/Layout/Modal'
 
@@ -8,9 +8,15 @@ interface IProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+interface ILoginData {
+  email: string
+  password: string
+}
+
 const SignUpModal: React.FC<IProps> = ({ setShowModal }) => {
-  const handleSubmit = useCallback((data) => {
-    console.log(data)
+  const { signIn } = useAuth()
+  const handleSubmit = useCallback((data: ILoginData) => {
+    signIn(data)
   }, [])
 
   return (

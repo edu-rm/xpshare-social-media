@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react'
-import { AiOutlineClose } from 'react-icons/ai'
 import { Form } from '@unform/web'
 
 import Input from '../Input'

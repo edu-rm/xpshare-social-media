@@ -1,22 +1,18 @@
 import React from 'react'
 import GlobalStyle from './styles/global'
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Routes from './routes'
 
-import Home from './pages/Home'
-import Header from './components/Header'
-
-import DashBoard from './pages/DashBoard'
+import AppProvider from './hooks'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path='/' exact component={Home} />
-        <Route path='/dashboard' component={DashBoard} />
-      </Switch>
+    <>
+      <AppProvider>
+        <Routes />
+      </AppProvider>
       <GlobalStyle />
-    </BrowserRouter>
+    </>
   )
 }
 

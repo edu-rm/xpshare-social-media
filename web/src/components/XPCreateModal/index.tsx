@@ -7,8 +7,6 @@ import TextArea from '../TextArea'
 
 import { CreateScopedStyle } from './styles'
 
-import { AiOutlineClose } from 'react-icons/ai'
-
 interface IProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>
 }

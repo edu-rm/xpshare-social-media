@@ -1,23 +1,16 @@
-import React, {
-  useRef,
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useState
-} from 'react'
-import { AiOutlineClose } from 'react-icons/ai'
-import { Form } from '@unform/web'
+import React, { Dispatch, SetStateAction, useCallback } from 'react'
+// import { Form } from '@unform/web'
 
-import Input from '../Input'
+// import Input from '../Input'
 import Modal from '../../styles/Layout/Modal'
 
 interface IProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 const ProfileConfigModal: React.FC<IProps> = ({ setShowModal }) => {
-  const handleSubmit = useCallback((data) => {
-    console.log(data)
-  }, [])
+  // const handleSubmit = useCallback((data) => {
+  //   console.log(data)
+  // }, [])
 
   return (
     <Modal setShowModal={setShowModal}>

@@ -4,6 +4,7 @@ import { BiExit } from 'react-icons/bi'
 import { AiOutlineHome } from 'react-icons/ai'
 import { FiPlusCircle } from 'react-icons/fi'
 import { BsGear } from 'react-icons/bs'
+import { useAuth } from '../../hooks/AuthContext'
 
 import { Container, HeaderStyled } from './styles'
 
@@ -16,6 +17,7 @@ const Header: React.FC<IProps> = ({
   setShowCreateFormModal,
   setShowProfileConfigModal
 }) => {
+  const { signOut } = useAuth()
   const handleShowCreateXpForm = useCallback(() => {
     setShowCreateFormModal(true)
   }, [])
@@ -41,7 +43,7 @@ const Header: React.FC<IProps> = ({
           </button>
         </div>
 
-        <button>
+        <button onClick={signOut}>
           <BiExit size={28} />
         </button>
       </HeaderStyled>
