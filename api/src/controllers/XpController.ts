@@ -3,15 +3,21 @@ import createXpService from '../services/CreateXpService'
 import xpsRepository from '../repositories/implementations/XpsRepository'
 
 export const create = async (request: Request, response: Response) => {
-  const { title, content } = request.body
+  const { title: titleRequest, content: contentRequest } = request.body
 
-  const xpCreated = await createXpService(
+  const { id: user_id } = response.locals.jwtPayload
+  const { id, title, content } = await createXpService(
     {
-      title,
-      content
+      title: titleRequest,
+      content: contentRequest,
+      user_id
     },
     xpsRepository
   )
 
-  return response.json({ ...xpCreated })
+  return response.json({
+    id,
+    title,
+    content
+  })
 }

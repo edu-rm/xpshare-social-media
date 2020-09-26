@@ -4,11 +4,11 @@ import AppError from '../errors/AppError'
 import ICreateXpDTO from 'DTOs/ICreateXpDTO'
 
 const execute = async (
-  { title, content }: ICreateXpDTO,
+  { title, content, user_id }: ICreateXpDTO,
   repository: IXpRepository
 ): Promise<Xp> => {
-  const xpCreated = await repository.create({ title, content })
-  const xpSaved = await repository.create(xpCreated)
+  const xpCreated = await repository.create({ title, content, user_id })
+  const xpSaved = await repository.save(xpCreated)
   return xpSaved
 }
 

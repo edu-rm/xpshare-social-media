@@ -6,7 +6,8 @@ describe('CreateXp', () => {
     const xp = await createXpService(
       {
         title: 'Title',
-        content: 'Hello World'
+        content: 'Hello World',
+        user_id: 1
       },
       FakeXpsRepository
     )

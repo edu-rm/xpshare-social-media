@@ -14,11 +14,16 @@ const findById = async (id: number): Promise<Xp | undefined> => {
   return xp
 }
 
-const create = async ({ title, content }: ICreateXpDTO): Promise<Xp> => {
+const create = async ({
+  title,
+  content,
+  user_id
+}: ICreateXpDTO): Promise<Xp> => {
   const xpsRepository = repository()
   const xp = await xpsRepository.create({
     title,
-    content
+    content,
+    user_id
   })
 
   return xp
