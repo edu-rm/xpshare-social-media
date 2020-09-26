@@ -1,10 +1,37 @@
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
-export const Container = styled.div`
+interface IContainerProps {
+  error: boolean
+}
+
+const animationLeftRight = keyframes`
+  0% {
+    transform: translateX(-10px);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+`
+
+export const Container = styled.div<IContainerProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 1;
+  position: relative;
+
+  span {
+    position: absolute;
+    bottom: -16px;
+    font-size: 13px;
+    color: red;
+  }
 
   input {
     text-align: center;
@@ -17,6 +44,16 @@ export const Container = styled.div`
   }
 
   & + div {
-    margin-top: 20px;
+    margin-top: 28px;
   }
+
+  ${(props) =>
+    props.error &&
+    css`
+      animation: ${animationLeftRight} 0.3s;
+
+      input {
+        border-bottom: 1px solid red;
+      }
+    `}
 `

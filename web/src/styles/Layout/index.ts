@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
-const animationUp = keyframes`
+const animationDown = keyframes`
   from {
     opacity: 0;
     transform: translateY(-100px);
@@ -20,5 +20,5 @@ export const Layout = styled.div`
   align-items: center;
   justify-content: center;
 
-  animation: ${animationUp} 1s;
+  animation: ${animationDown} 1s;
 `

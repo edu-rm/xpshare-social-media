@@ -27,7 +27,7 @@ export const ModalStyle = styled(animated.div)`
   position: absolute;
 
   button {
-    margin-top: 20px;
+    margin-top: 28px;
   }
 `
 

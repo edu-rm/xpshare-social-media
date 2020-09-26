@@ -16,6 +16,13 @@ export const create = async (request: Request, response: Response) => {
     hashProvider,
     sessionProvider
   )
-
-  return response.json({ user, token })
+  const { id, name, email: userEmail } = user
+  return response.json({
+    user: {
+      id,
+      name,
+      email: userEmail
+    },
+    token
+  })
 }

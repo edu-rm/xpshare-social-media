@@ -22,9 +22,10 @@ const Input: React.FC<IInputProps> = ({ name, content, ...rest }) => {
   }, [fieldName, registerField])
 
   return (
-    <Container>
+    <Container error={!!error}>
       <p>{content}</p>
       <input defaultValue={defaultValue} ref={inputRef} type='text' {...rest} />
+      {!!error && <span>{error}</span>}
     </Container>
   )
 }

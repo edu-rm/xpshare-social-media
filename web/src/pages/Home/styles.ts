@@ -1,7 +1,19 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { shade } from 'polished'
 
+const animationDown = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+`
+
 export const Container = styled.div`
+  animation: ${animationDown} 1s;
   height: 100%;
   display: flex;
   flex-direction: column;
