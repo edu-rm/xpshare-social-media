@@ -1,5 +1,7 @@
 import createUserService from './CreateUserService'
 import FakeUserRepository from '../repositories/fakes/FakeUsersRepository'
+import FakeHashProvider from '../providers/Hash/fake/FakeHashProvider'
+
 import AppError from '../errors/AppError'
 
 describe('CreateUser', () => {
@@ -7,10 +9,11 @@ describe('CreateUser', () => {
     const user = await createUserService(
       {
         name: 'John Doe',
-        email: 'johndoe@teste.com',
+        email: 'john.doe@teste.com',
         password: '123456'
       },
-      FakeUserRepository
+      FakeUserRepository,
+      FakeHashProvider
     )
 
     expect(user).toHaveProperty('id')
@@ -23,17 +26,19 @@ describe('CreateUser', () => {
         email: 'johndoe@teste.com',
         password: '123456'
       },
-      FakeUserRepository
+      FakeUserRepository,
+      FakeHashProvider
     )
 
     await expect(
       createUserService(
         {
-          name: 'John Doe1',
+          name: 'John Doe',
           email: 'johndoe@teste.com',
           password: '123456'
         },
-        FakeUserRepository
+        FakeUserRepository,
+        FakeHashProvider
       )
     ).rejects.toBeInstanceOf(AppError)
   })

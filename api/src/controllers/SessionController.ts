@@ -1,20 +1,21 @@
 import { Request, Response } from 'express'
-import createUserService from '../services/CreateUserService'
+import createSessionService from '../services/CreateSessionService'
 import userRepository from '../repositories/implementations/UsersRepository'
 import hashProvider from '../providers/Hash'
+import sessionProvider from '../providers/SessionProvider'
 
 export const create = async (request: Request, response: Response) => {
-  const { name, email, password } = request.body
+  const { email, password } = request.body
 
-  const userCreated = await createUserService(
+  const { user, token } = await createSessionService(
     {
-      name,
       email,
       password
     },
     userRepository,
-    hashProvider
+    hashProvider,
+    sessionProvider
   )
 
-  return response.json({ ...userCreated })
+  return response.json({ user, token })
 }

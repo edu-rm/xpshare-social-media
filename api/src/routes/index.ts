@@ -1,8 +1,10 @@
 import { Request, Response, Router } from 'express'
-import { create } from '../controllers/UserController'
+import sessionsRoutes from './session.routes'
+import usersRoutes from './user.routes'
 
 const router = Router()
 
-router.use('/user', create)
+router.use('/session', sessionsRoutes)
+router.use('/user', usersRoutes)
 
 export default router

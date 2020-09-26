@@ -3,12 +3,6 @@ import Xp from '../entities/Xp'
 import AppError from '../errors/AppError'
 import ICreateXpDTO from 'DTOs/ICreateXpDTO'
 
-interface IRequest {
-  name: string
-  email: string
-  password: string
-}
-
 const execute = async (
   { title, content }: ICreateXpDTO,
   repository: IXpRepository
