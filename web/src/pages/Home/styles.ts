@@ -12,6 +12,25 @@ const animationDown = keyframes`
   }
 `
 
+const animationToast = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+`
+
 export const Container = styled.div`
   animation: ${animationDown} 1s;
   height: 100%;
@@ -33,6 +52,27 @@ export const Container = styled.div`
 
     &:hover {
       background-color: ${shade(0.1, '#029e74')};
+    }
+  }
+
+  span#toast {
+    transform: translateY(-100px);
+    padding: 20px;
+    position: absolute;
+    top: 30px;
+    left: 12px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    border-radius: 12px;
+    animation: ${animationToast} 6s;
+
+    svg {
+      margin-right: 12px;
     }
   }
 `

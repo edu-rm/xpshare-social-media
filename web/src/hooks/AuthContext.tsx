@@ -6,15 +6,23 @@ interface ISignINCredentials {
   password: string
 }
 
+interface IUserObject {
+  id: number
+  name: string
+  email: string
+}
+
 interface IAuthContext {
-  user: object
+  user: IUserObject
   signIn(credentials: ISignINCredentials): Promise<void>
   signOut(): void
+  handleNewUserCreated(): void
+  newUserCreated: boolean
 }
 
 interface IDataAuthState {
   token: string
-  user: object
+  user: IUserObject
 }
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext)
@@ -33,6 +41,12 @@ const AuthProvider: React.FC = ({ children }) => {
 
     return {} as IDataAuthState
   })
+
+  const [newUserCreated, setNewUserCreated] = useState<boolean>(false)
+
+  const handleNewUserCreated = useCallback(() => {
+    setNewUserCreated(true)
+  }, [])
 
   const signIn = useCallback(async ({ email, password }) => {
     const response = await api.post('/session', {
@@ -55,7 +69,15 @@ const AuthProvider: React.FC = ({ children }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{
+        user: data.user,
+        signIn,
+        signOut,
+        handleNewUserCreated,
+        newUserCreated
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )

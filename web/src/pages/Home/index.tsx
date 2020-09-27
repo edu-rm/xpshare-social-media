@@ -1,13 +1,21 @@
-import React, { useCallback, useState } from 'react'
-
+import React, { useCallback, useState, useEffect } from 'react'
+import { useAuth } from '../../hooks/AuthContext'
 import { Container, Header, Body } from './styles'
-
+import { BsCheckCircle } from 'react-icons/bs'
 import SignUpModal from '../../components/SignUpModal'
 import LoginModal from '../../components/LoginModal'
 
 const SignIn: React.FC = () => {
+  const { newUserCreated } = useAuth()
   const [showRegisterForm, setShowRegisterForm] = useState<boolean>(false)
   const [showLoginForm, setShowLoginForm] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (newUserCreated) {
+      setShowRegisterForm(false)
+      setShowLoginForm(true)
+    }
+  }, [newUserCreated])
 
   const handleShowRegisterForm = useCallback(() => {
     setShowRegisterForm(true)
@@ -44,6 +52,12 @@ const SignIn: React.FC = () => {
       </button>
       {showRegisterForm && <SignUpModal setShowModal={setShowRegisterForm} />}
       {showLoginForm && <LoginModal setShowModal={setShowLoginForm} />}
+      {!!newUserCreated && (
+        <span id='toast'>
+          <BsCheckCircle size={30} color='#E7FAFF' />
+          Usuário criado com sucesso, logue-se
+        </span>
+      )}
     </Container>
   )
 }

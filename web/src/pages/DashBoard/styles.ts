@@ -32,9 +32,14 @@ export const Left = styled.div`
     align-items: center;
     position: relative;
 
+    .text {
+      max-width: 60%;
+    }
+
     img {
+      height: 190px;
       position: absolute;
-      right: 0;
+      right: 30px;
       bottom: 0;
     }
   }
