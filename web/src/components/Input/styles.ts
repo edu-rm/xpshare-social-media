@@ -25,6 +25,7 @@ export const Container = styled.div<IContainerProps>`
   align-items: center;
   flex: 1;
   position: relative;
+  text-align: center;
 
   span {
     position: absolute;

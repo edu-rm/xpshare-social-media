@@ -33,6 +33,8 @@ const AuthProvider: React.FC = ({ children }) => {
     const user = localStorage.getItem('@XPSHARE:user')
 
     if (user && token) {
+      api.defaults.headers.auth = token
+
       return {
         token,
         user: JSON.parse(user)
@@ -57,6 +59,8 @@ const AuthProvider: React.FC = ({ children }) => {
 
     localStorage.setItem('@XPSHARE:token', token)
     localStorage.setItem('@XPSHARE:user', JSON.stringify(user))
+
+    api.defaults.headers.auth = token
 
     setData({ token, user })
   }, [])

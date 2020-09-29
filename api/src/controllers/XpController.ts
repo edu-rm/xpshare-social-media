@@ -21,3 +21,13 @@ export const create = async (request: Request, response: Response) => {
     content
   })
 }
+
+export const index = async (request: Request, response: Response) => {
+  const { id: user_id } = response.locals.jwtPayload
+
+  const feed = await xpsRepository.findAllButId(user_id)
+
+  return response.json({
+    feed
+  })
+}

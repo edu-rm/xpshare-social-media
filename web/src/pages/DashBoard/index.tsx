@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Container, Wrapper, Left, Right } from './styles'
 import Header from '../../components/Header'
@@ -11,6 +11,7 @@ import { useAuth } from '../../hooks/AuthContext'
 import { Layout } from '../../styles/Layout'
 
 import Illustration from '../../assets/Illustration.svg'
+import api from '../../services/apiClient'
 
 const DashBoard: React.FC = () => {
   const { user } = useAuth()
@@ -18,8 +19,6 @@ const DashBoard: React.FC = () => {
   const [showProfileConfigModal, setShowProfileConfigModal] = useState<boolean>(
     false
   )
-
-  console.log(user)
 
   return (
     <Layout>

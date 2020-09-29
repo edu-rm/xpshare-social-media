@@ -46,9 +46,4 @@ const save = async (user: User): Promise<User> => {
   return userSaved
 }
 
-export default {
-  create,
-  save,
-  findByEmail,
-  findById
-}
+export default { create, save, findByEmail, findById }

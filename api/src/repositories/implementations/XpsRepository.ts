@@ -1,4 +1,4 @@
-import { EntitySchema, getRepository } from 'typeorm'
+import { EntitySchema, getRepository, Not } from 'typeorm'
 import ICreateUserDTO from 'DTOs/ICreateUserDTO'
 import Xp from '../../entities/Xp'
 import ICreateXpDTO from 'DTOs/ICreateXpDTO'
@@ -36,8 +36,16 @@ const save = async (xp: Xp): Promise<Xp> => {
   return xpSaved
 }
 
-export default {
-  create,
-  save,
-  findById
+const findAllButId = async (user_id: number): Promise<Xp[] | undefined> => {
+  const xpsRepository = repository()
+
+  const xps = await xpsRepository.find({
+    where: {
+      user_id: Not(user_id)
+    }
+  })
+
+  return xps
 }
+
+export default { create, save, findById, findAllButId }
