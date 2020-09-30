@@ -42,6 +42,17 @@ const update = async (data: IUpdateXpDTO): Promise<Xp> => {
   return xpUpdated
 }
 
+const softDelete = async (id: number): Promise<boolean> => {
+  const xpsRepository = repository()
+  const xp = await xpsRepository.softDelete(id)
+
+  const deleted = await xpsRepository.softDelete(id)
+
+  if (!deleted) return false
+
+  return true
+}
+
 const save = async (xp: Xp): Promise<Xp> => {
   const xpsRepository = repository()
 
@@ -73,4 +84,12 @@ const findAllById = async (user_id: number): Promise<Xp[] | undefined> => {
   return xps
 }
 
-export default { create, save, findById, findAllButId, findAllById, update }
+export default {
+  create,
+  save,
+  findById,
+  findAllButId,
+  findAllById,
+  update,
+  softDelete
+}

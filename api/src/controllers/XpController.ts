@@ -43,3 +43,13 @@ export const update = async (request: Request, response: Response) => {
     ...xpUpdated
   })
 }
+
+export const remove = async (request: Request, response: Response) => {
+  const { id } = request.params
+
+  const deleted = await xpsRepository.softDelete(Number(id))
+
+  return response.json({
+    deleted
+  })
+}

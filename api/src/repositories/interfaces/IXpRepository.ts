@@ -10,4 +10,5 @@ export default interface IXpRepository {
   save(xp: Xp): Promise<Xp>
   findAllButId(user_id: number): Promise<Xp[] | undefined>
   findAllById(user_id: number): Promise<Xp[] | undefined>
+  softDelete(id: number): Promise<boolean>
 }
