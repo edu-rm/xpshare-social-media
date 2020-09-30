@@ -2,6 +2,7 @@ import { EntitySchema, getRepository, Not } from 'typeorm'
 import ICreateUserDTO from 'DTOs/ICreateUserDTO'
 import Xp from '../../entities/Xp'
 import ICreateXpDTO from 'DTOs/ICreateXpDTO'
+import IUpdateXpDTO from 'DTOs/IUpdateXpDTO'
 
 const repository = () => {
   return getRepository(Xp)
@@ -29,6 +30,18 @@ const create = async ({
   return xp
 }
 
+const update = async (data: IUpdateXpDTO): Promise<Xp> => {
+  const xpsRepository = repository()
+  const xp = await xpsRepository.findOne(data.id)
+
+  const xpUpdated = await xpsRepository.save({
+    ...xp,
+    ...data
+  })
+
+  return xpUpdated
+}
+
 const save = async (xp: Xp): Promise<Xp> => {
   const xpsRepository = repository()
 
@@ -48,4 +61,16 @@ const findAllButId = async (user_id: number): Promise<Xp[] | undefined> => {
   return xps
 }
 
-export default { create, save, findById, findAllButId }
+const findAllById = async (user_id: number): Promise<Xp[] | undefined> => {
+  const xpsRepository = repository()
+
+  const xps = await xpsRepository.find({
+    where: {
+      user_id
+    }
+  })
+
+  return xps
+}
+
+export default { create, save, findById, findAllButId, findAllById, update }

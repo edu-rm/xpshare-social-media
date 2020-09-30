@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import createUserService from '../services/CreateUserService'
 import userRepository from '../repositories/implementations/UsersRepository'
 import hashProvider from '../providers/Hash'
+import xpsRepository from '../repositories/implementations/XpsRepository'
 
 export const create = async (request: Request, response: Response) => {
   const { name, email, password } = request.body
